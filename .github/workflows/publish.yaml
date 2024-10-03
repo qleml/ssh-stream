@@ -25,13 +25,10 @@ jobs:
 
     - name: Build the package
       run: python -m build
-    
-    - name: Log API Token (Temporary)
-      run: echo "TWINE_PASSWORD=${{ secrets.TEST_PYPI_API_TOKEN }}"
-
+      
     - name: Publish to TestPyPI
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
-      run: python -m twine upload --repository testpypi dist/*
+      run: python -m twine upload --verbose --repository testpypi dist/*
 
