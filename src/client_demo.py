@@ -9,10 +9,12 @@ if not client.connect():
 data = "Hello, world!"
 i = 0
 
-for i in range(len(data)):
+while True:
     if not client.send(data[i]):
         print("Failed to send data")
         break
+    i += 1
+    if i >= len(data): i = 0
 
 client.close()
 
